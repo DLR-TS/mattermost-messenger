@@ -1,0 +1,12 @@
+#
+# Copyright (C) DLR 2024, 2025
+#
+# Ignore generated files
+#
+
+
+__pycache__/
+poetry.lock
+/dist/
+
+

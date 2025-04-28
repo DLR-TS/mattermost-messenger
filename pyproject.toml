@@ -1,0 +1,47 @@
+#
+# Copyright (C) DLR 2024, 2025
+#
+# Package configuration
+#
+
+
+[tool.poetry]
+name = "mattermost-messenger"
+version = "1.0.0"
+description = "Several classes and tools to send messages to a Mattermost channel"
+license = "BSD-3-Clause"
+authors = [
+    "Björn Hendriks <bjoern.hendriks@dlr.de>"
+]
+readme = "README.md"
+
+
+[tool.poetry.scripts]
+sendToMattermost = "mattermost_messenger.__main__:main"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.2.6"
+sphinx-autoapi = "^3.0.0"
+sphinx-rtd-theme = "^2.0.0"
+myst-nb = "^1.0.0"
+
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.1.1"
+mypy = "^1.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
