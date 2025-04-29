@@ -6,73 +6,59 @@ This package provides the Python module `mattermost_messenger` containing code t
 
 The package provides several interfaces. Besides a command line executable it contains classes to send Mattermost messages either directly or in its own thread (to avoid blocking the caller due to network issues). Furthermore, there is a Python logging handler sending log messages to Mattermost.
 
-See also [CHANGELOG](./CHANGELOG.md) for current features.
+See also `CHANGELOG.md` for current features.
 
 
 
 ## License
 
-See [here](./LICENSE.md)
+See `LICENSE.md`
 
 
 
 ## Installation
 
-### Python version
+Install package with Pip from PyPI:
+
+```bash
+pip install mattermost-messenger
+```
+
+
+### Required Python version
 
 The Mattermost Messenger requires at least Python 3.10 or the version noted as dependency in `pyproject.toml`.
 
 
-### Python Poetry
 
-The Mattermost Messenger applies [Python Poetry](https://python-poetry.org/) for package management. If you haven't done that yet, you need to install it with
+## Documentation
+
+Every class and method contains a doc string with its documentation.
+
+With Sphinx you can generate a nicely formatted HTML page hierarchy to easily browse the doc strings.
+
+In order to build the documentation you need to install the Python package manager [Poetry](https://python-poetry.org/) if you haven't done that yet:
 
 ```bash
 pip install poetry
 ```
 
-Next you need to apply Poetry to create a virtual environment for the following steps with
-
-```bash
-poetry install
-```
-
-In case you plan to generate the documentation as described below, you may instead install with the required dependencies by calling
+Next, you need to apply Poetry to create a virtual environment with the required Sphinx tools. This is done with a single Poetry call:
 
 ```bash
 poetry install --with=docs
 ```
 
-
-### Build package
-
-To create the Mattermost Messenger package file call
+Finally, change to the `docs` folder and apply its `Makefile` within the Poetry virtual environment:
 
 ```bash
-poetry build
-```
-
-This creates a subfolder `dist` with a `.whl` file.
-
-
-### Install package
-
-After the last step the subfolder `dist` contains a file `mattermost_messenger-<version>-py3-none-any.whl` with `<version>` as placeholder for the current version. You can install it with `pip` into any Python environment to import the package or execute the command line tool as described below.
-
-
-### Build documentation
-
-First, you need to install the dependencies to build the documentation with `poetry install --with=docs` before building the documentation itself. Then call `make html` in folder `docs` with Poetry. All together:
-
-```bash
-poetry install --with=docs
 cd docs
 poetry run make html
 ```
 
 Now, the folder `docs/_build/html/` contains the doc pages. Open `index.html` with a web browser to see the documentation.
 
-`make help` instead of `make html` offers many other formats besides `html` to generate the documentation in.
+With `make help` instead of `make html` a list of available other formats besides `html` are shown.
 
 
 
@@ -177,5 +163,5 @@ Emojis are given as a dictionary passed to `MattermostHandler.__init__`. The dic
 
 ## Contributing
 
-See [CONTRIBUTING](./CONTRIBUTING.md)
+See `CONTRIBUTING.md`
 

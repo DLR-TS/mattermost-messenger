@@ -13,21 +13,44 @@ To contribute you may
 
 ## Building
 
-See also section about installation in [README](./README.md).
+
+
+
+### Python Poetry
+
+The Mattermost Messenger applies [Python Poetry](https://python-poetry.org/) for package management. If you haven't done that yet, you need to install it with
+
+```bash
+pip install poetry
+```
+
+Next you need to apply Poetry to create a virtual environment with the required dependencies for the following steps with
+
+```bash
+poetry install
+```
+
+
+### Build package
+
+To create the Mattermost Messenger package file call
+
+```bash
+poetry build
+```
+
+This creates a subfolder `dist` with a `.whl` file.
+
+
+### Install built package
+
+After the last step the subfolder `dist` contains a file `mattermost_messenger-<version>-py3-none-any.whl` with `<version>` as placeholder for the current version (from `pyproject.toml`). You can install it with `pip` into any Python environment to import the package or execute the command line tool as described below.
 
 
 ### `pyproject.toml`
 
-File `pyproject.toml` is the configuration file for building the package. It contains mainly the Poetry setup.
+File `pyproject.toml` is the configuration file for building the package. It contains mainly some metadata and the dependencies.
 
-
-### Add test dependencies to Poetry's virtual environment
-
-Optional dependencies are defined in different Poetry groups in `pyproject.toml`. To install the dependency group called `test` in Poetry's virtual environment call:
-
-```bash
-poetry install --with=test
-```
 
 
 ## Coding guidelines
@@ -57,9 +80,9 @@ Additional testing or documentation dependencies have to be added to sections `[
 
 ### Documentation
 
-All classes, functions, methods, global variables, etc. should have a docstring. The API reference documentation in the HTML documentation is generated from the docstrings by applying [Sphinx AutoAPI](https://sphinx-autoapi.readthedocs.io/en/latest/index.html). Note, that docstrings for global variables need to be put *after* the variable definition.
+All classes, functions, methods, global variables, etc. should have a docstring. The API reference documentation in the HTML documentation is generated from the docstrings by applying [Sphinx AutoAPI](https://sphinx-autoapi.readthedocs.io/en/latest/index.html). See `README.md` on how to do that easily with Poetry.
 
-Please use the [Sphinx docstring format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format) in the docstrings to describe parameters, return value, etc. for functions.
+Please use the [Sphinx docstring format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format) in the docstrings to describe parameters, return value, etc. for functions. Note that docstrings for global variables need to be put *after* the variable definition.
 
 General documentation pages can be added in ReStructured Text or Markdown format to the `docs` folder. Add them to `index.rst` to make them available. Markdown will be converted to ReStructured Text with [MyST](https://myst-parser.readthedocs.io), which also allows to embed ReStructured Text directives in Markdown.
 
@@ -74,7 +97,11 @@ There should be unit tests for any function and class method to test at least th
 
 ## Testing
 
-Dependencies for running the test tools are contained in the dependency group `test`.
+Dependencies for running the test tools are contained in the dependency group `test`. To install the testing tools into the Poetry venv call
+
+```bash
+poetry install --with=test
+```
 
 
 ### Unit tests
@@ -82,7 +109,6 @@ Dependencies for running the test tools are contained in the dependency group `t
 Subdir `tests` contains Python unit test. To run them all, call:
 
 ```bash
-poetry install --with=test
 poetry run pytest .
 ```
 
@@ -94,7 +120,6 @@ Many tests still make use of the `unittest` package and its features, which are 
 For type checking apply [my[py]](https://mypy.readthedocs.io/en/stable/) to the code:
 
 ```bash
-poetry install --with=test
 poetry run mypy .
 ```
 

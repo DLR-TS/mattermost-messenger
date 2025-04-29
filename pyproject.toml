@@ -7,13 +7,18 @@
 
 [tool.poetry]
 name = "mattermost-messenger"
-version = "1.0.0"
+version = "1.0.1"
 description = "Several classes and tools to send messages to a Mattermost channel"
 license = "BSD-3-Clause"
 authors = [
     "Björn Hendriks <bjoern.hendriks@dlr.de>"
 ]
 readme = "README.md"
+
+[tool.poetry.urls]
+Repository = "https://github.com/DLR-TS/mattermost-messenger"
+Changelog = "https://github.com/DLR-TS/mattermost-messenger/blob/main/CHANGELOG.md"
+Issues = "https://github.com/DLR-TS/mattermost-messenger/issues"
 
 
 [tool.poetry.scripts]
